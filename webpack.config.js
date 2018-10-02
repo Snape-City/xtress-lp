@@ -1,13 +1,10 @@
-'use scrict'
-
 const { VueLoaderPlugin } = require('vue-loader')
 const path = require('path');
 
 module.exports = {
-  mode: 'development',
   entry: './src/app.js',
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, '/public'),
     filename: 'bundle.js',
     publicPath: '/public'
   },
@@ -15,10 +12,19 @@ module.exports = {
     rules: [
       {
         test: /\.vue$/,
-        use: 'vue-loader'
+        exclude: /node_modules/,
+        loader: 'vue-loader'
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
+        }
       }
-    ]
+    ],
   },
+
   plugins: [
     new VueLoaderPlugin()
   ]

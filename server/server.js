@@ -6,7 +6,7 @@ const PORT = 8080;
 app.use(express.static(path.join(__dirname, '../public/')));
 
 app.get('/', (req, res) => {
-  res.end()
+  res.sendStatus(200)
 })
 
 app.listen(PORT, console.log(`Listening on PORT ${PORT}`))
